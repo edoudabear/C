@@ -215,13 +215,13 @@ void circle(int ic, int jc, int r, color c) {
         }
         set_pixel_color(ic+di,jc+dj,c);
     }
-    /*while (di>r) {
-        di--;
+    while (dj>-r) {
+        di++;
         if (abs(r*r-di*di-(dj-1)*(dj-1))<abs(r*r-di*di-dj*dj)) {
             dj--;
         }
         set_pixel_color(ic+di,jc+dj,c);
-    }*/
+    }
 }
 
 void circlef(int ic, int jc, int r, color c) {
