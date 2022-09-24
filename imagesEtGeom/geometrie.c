@@ -492,7 +492,7 @@ int main(void) {
     //printf("TEST QUESTION 10\n");
     init(300, 300, black);
     // Indiquer ci-dessous la question pour activer les tests
-    test_question(15);
+    test_question(16);
 
     // Enregistrement de l'image
     return write("resultat.ppm");
