@@ -267,7 +267,9 @@ void circle(int ic, int jc, int r, color c) {
 }
 
 void circlef(int ic, int jc, int r, color c) {
-    // A compléter
+    for (int i=0;i<r;i++) {
+        circle(ic,jc,r,c);
+    }
 }
 
 void trianglef(int i1, int j1, int i2, int j2, int i3, int j3, color c) {
@@ -436,7 +438,7 @@ int main(void) {
     //printf("TEST QUESTION 10\n");
     init(300, 300, black);
     // Indiquer ci-dessous la question pour activer les tests
-    test_question(14);
+    test_question(15);
 
     // Enregistrement de l'image
     return write("resultat.ppm");
