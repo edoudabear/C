@@ -506,12 +506,16 @@ void test_question(int question) {
 
 // Programme principal
 
-int main(void) {
+int main(int argc,char **argv) {
     // Création d'une image uniformément noire
     //printf("TEST QUESTION 10\n");
     init(300, 300, black);
+    if (argc==1 || argc>2) {
+        printf("Le programme ne prend qu'un et un seul argument !");
+    }
+    int index_question= atoi(argv[1]);
     // Indiquer ci-dessous la question pour activer les tests
-    test_question(16);
+    test_question(index_question);
 
     // Enregistrement de l'image
     return write("resultat.ppm");
