@@ -206,7 +206,7 @@ void line(int i1, int j1, int i2, int j2, color c) {
     }
 }
 
-void circle(int ic, int jc, int r, color c) {
+void circle(int ic, int jc, int r, color c) { // Inspiré de la relation du triangle rectangle
     int dj=0,di=-r;
     while (dj>di) {
         dj--;
@@ -266,9 +266,63 @@ void circle(int ic, int jc, int r, color c) {
     }
 }
 
-void circlef(int ic, int jc, int r, color c) {
-    for (int i=0;i<r;i++) {
-        circle(ic,jc,r,c);
+void circlef(int ic, int jc, int r, color c) { // Inspiré de circle
+    int dj=0,di=-r;
+    while (dj>di) {
+        dj--;
+        if (abs(r*r-dj*dj-(di+1)*(di+1))<abs(r*r-dj*dj-di*di)) {
+            di++;
+        }
+        hline(ic+di,jc+dj,jc,c);
+    }
+    while (dj>-r) {
+        di++;
+        if (abs(r*r-di*di-(dj-1)*(dj-1))<abs(r*r-di*di-dj*dj)) {
+            dj--;
+        }
+        hline(ic+di,jc+dj,jc,c);
+    }
+    while (abs(dj)>abs(di)) {
+        di++;
+        if (abs(r*r-di*di-(dj+1)*(dj+1))<abs(r*r-di*di-dj*dj)) {
+            dj++;
+        }
+        hline(ic+di,jc+dj,jc,c);
+    }
+    while (dj<0) {
+        dj++;
+        if (abs(r*r-dj*dj-(di+1)*(di+1))<abs(r*r-dj*dj-di*di)) {
+            di++;
+        }
+        hline(ic+di,jc+dj,jc,c);
+    }
+    while (dj<di) {
+        dj++;
+        if (abs(r*r-dj*dj-(di-1)*(di-1))<abs(r*r-dj*dj-di*di)) {
+            di--;
+        }
+        hline(ic+di,jc+dj,jc,c);
+    }
+    while (di>0) {
+        di--;
+        if (abs(r*r-(dj+1)*(dj+1)-di*di)<abs(r*r-dj*dj-di*di)) {
+            dj++;
+        }
+        hline(ic+di,jc+dj,jc,c);
+    }
+    while (dj>abs(di)) {
+        di--;
+        if (abs(r*r-(dj-1)*(dj-1)-di*di)<abs(r*r-dj*dj-di*di)) {
+            dj--;
+        }
+        hline(ic+di,jc+dj,jc,c);
+    }
+    while (dj>0) {
+        dj--;
+        if (abs(r*r-dj*dj-(di-1)*(di-1))<abs(r*r-dj*dj-di*di)) {
+            di--;
+        }
+        hline(ic+di,jc+dj,jc,c);
     }
 }
 
