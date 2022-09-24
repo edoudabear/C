@@ -1,0 +1,32 @@
+#include <stdio.h>
+
+int next(const int u) {
+    if (u%2 == 0) {
+        return u/2;
+    } else {
+        return 3*u+1;
+    }
+}
+
+int index_min(int uzero) {
+    int u = uzero, i=0;
+    while (u!=1) {
+	u=next(u);
+	++i;
+    }
+    return i;
+    //printf("U(0)=%d\tkmin=%d\n",uzero,i);
+}
+
+int main(void) {
+    int uzero_max=1, index_max=-1;
+    for (int i=1;i<100;i++) {
+	int termeumin=index_min(i);
+	if (termeumin>=index_max) {
+	   uzero_max=i;
+	   index_max=termeumin;
+	}
+    }
+    printf("Temps de vol max pour u(0)=%d avec un temps de vol de %d\n",uzero_max,index_max);
+    return 0;
+}

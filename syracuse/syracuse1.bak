@@ -1,0 +1,32 @@
+#include <stdio.h>
+
+int next(const int u) {
+    if (u%2 == 0) {
+        return u/2;
+    } else {
+        return 3*u+1;
+    }
+}
+
+void index_min(int uzero) {
+    int u = uzero, i=0;
+    while (u!=1) {
+	u=next(u);
+	++i;
+    }
+    printf("U(0)=%d\tkmin=%d\n",uzero,i);
+}
+
+int main(void) {
+    for (int i=1;i<20;i++) {
+	index_min(i);
+    }
+    return 0;
+    /*int u = 17; // terme initial u_0
+
+    while (u!=1) {
+        printf("%d\n", u);
+        u = next(u);
+    }
+    printf("%d\n", u);*/
+}

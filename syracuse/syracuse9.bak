@@ -1,0 +1,42 @@
+#include <stdio.h>
+#define UZERO 177
+
+int next(const int u) {
+    if (u%2 == 0) {
+        return u/2;
+    } else {
+        return 3*u+1;
+    }
+}
+
+int index_min(int uzero) {
+    int u = uzero, i=0;
+    while (u!=1) {
+	u=next(u);
+	++i;
+    }
+    return i;
+    //printf("U(0)=%d\tkmin=%d\n",uzero,i);
+}
+
+int t_vol_alt(int uzero) {
+    int u=uzero;
+    int uref=u,i=0;
+    while (uref<=u) {
+        i++;
+        u=next(u);
+        printf("u(%d)=%d\n",i,u);
+    }
+    printf("Temps de vol (pour u(0)=%d): %d\n",uref,i-1);
+    return i-1;
+}
+
+int main(void) {
+    int temps_vol_alt=0,i=1;
+    while (temps_vol_alt<20) {
+        i++;
+        temps_vol_alt=t_vol_alt(i);
+    }
+    printf("Le plus petit u(0) vérifiant t_vol_alt>=20 est %d\n",i);
+    return 0;
+}
