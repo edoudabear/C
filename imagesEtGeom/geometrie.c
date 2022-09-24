@@ -208,20 +208,20 @@ void line(int i1, int j1, int i2, int j2, color c) {
 
 void circle(int ic, int jc, int r, color c) {
     int dj=0,di=-r;
-    while (dj>-r) {
+    while (dj>di) {
         dj--;
         if (abs(r*r-dj*dj-(di+1)*(di+1))<abs(r*r-dj*dj-di*di)) {
             di++;
         }
         set_pixel_color(ic+di,jc+dj,c);
     }
-    while (di>r) {
+    /*while (di>r) {
         di--;
         if (abs(r*r-di*di-(dj-1)*(dj-1))<abs(r*r-di*di-dj*dj)) {
             dj--;
         }
         set_pixel_color(ic+di,jc+dj,c);
-    }
+    }*/
 }
 
 void circlef(int ic, int jc, int r, color c) {
