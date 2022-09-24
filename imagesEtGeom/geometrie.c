@@ -327,7 +327,26 @@ void circlef(int ic, int jc, int r, color c) { // Inspiré de circle
 }
 
 void trianglef(int i1, int j1, int i2, int j2, int i3, int j3, color c) {
-    // A compléter
+    if (i3==i2) {
+        if (j2>j3) {
+            int copy=j2;
+            j2=j3;
+            j3=copy;
+        }
+        for (int j=j2;j<j3;j++) {
+            line(i1,j1,i3,i,c);
+        }
+    }
+    else if (j2==j3) {
+        if (i2>i3) {
+            int copy=i2;
+            i2=i3;
+            i3=copy;
+        }
+        for (int i=i2;i<i3;i++) {
+            line(i1,j1,i,j3,c);
+        }
+    }
 }
 
 void trianglec(int i1, int j1, int i2, int j2, int i3, int j3) {
