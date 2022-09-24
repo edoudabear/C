@@ -326,7 +326,7 @@ void circlef(int ic, int jc, int r, color c) { // Inspiré de circle
     }
 }
 
-void trianglef(int i1, int j1, int i2, int j2, int i3, int j3, color c) {
+void trianglef(int i1, int j1, int i2, int j2, int i3, int j3, color c) { // Incomplète
     if (i3==i2) {
         if (j2>j3) {
             int copy=j2;
@@ -511,7 +511,7 @@ int main(void) {
     //printf("TEST QUESTION 10\n");
     init(300, 300, black);
     // Indiquer ci-dessous la question pour activer les tests
-    test_question(18);
+    test_question(17);
 
     // Enregistrement de l'image
     return write("resultat.ppm");
