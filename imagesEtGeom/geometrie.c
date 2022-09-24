@@ -236,27 +236,34 @@ void circle(int ic, int jc, int r, color c) {
         }
         set_pixel_color(ic+di,jc+dj,c);
     }
-    /*while (dj<di-r) {
+    while (dj<di) {
         dj++;
         if (abs(r*r-dj*dj-(di-1)*(di-1))<abs(r*r-dj*dj-di*di)) {
             di--;
         }
         set_pixel_color(ic+di,jc+dj,c);
     }
-    while (di>r) {
+    while (di>0) {
         di--;
         if (abs(r*r-(dj+1)*(dj+1)-di*di)<abs(r*r-dj*dj-di*di)) {
             dj++;
         }
         set_pixel_color(ic+di,jc+dj,c);
     }
-    while (di>r) {
+    while (dj>abs(di)) {
         di--;
-        if (abs(r*r-(dj+1)*(dj+1)-di*di)<abs(r*r-dj*dj-di*di)) {
-            dj++;
+        if (abs(r*r-(dj-1)*(dj-1)-di*di)<abs(r*r-dj*dj-di*di)) {
+            dj--;
         }
         set_pixel_color(ic+di,jc+dj,c);
-    }*/
+    }
+    while (dj>0) {
+        dj--;
+        if (abs(r*r-dj*dj-(di-1)*(di-1))<abs(r*r-dj*dj-di*di)) {
+            di--;
+        }
+        set_pixel_color(ic+di,jc+dj,c);
+    }
 }
 
 void circlef(int ic, int jc, int r, color c) {
