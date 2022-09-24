@@ -334,7 +334,7 @@ void trianglef(int i1, int j1, int i2, int j2, int i3, int j3, color c) {
             j3=copy;
         }
         for (int j=j2;j<j3;j++) {
-            line(i1,j1,i3,i,c);
+            line(i1,j1,i3,j,c);
         }
     }
     else if (j2==j3) {
