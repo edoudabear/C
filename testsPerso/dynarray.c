@@ -4,7 +4,8 @@
 int main(int argc, char** argv) {
     int *a;
     int length;
-    scanf("Enter int value : %d",&length);
+    printf("Enter int value : ");
+    scanf("%d",&length);
     a=malloc(sizeof(int) * length);
     printf("[");
     for (int i=0;i<length;i++) {
