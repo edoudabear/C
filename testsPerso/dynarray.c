@@ -3,8 +3,7 @@
 
 int main(int argc, char** argv) {
     int *a;
-    int length;
-    printf("Enter int value : ");
+    int length=atoi(argv[1]);
     scanf("%d",&length);
     a=malloc(sizeof(int) * length);
     printf("[");
