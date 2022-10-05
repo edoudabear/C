@@ -3,8 +3,11 @@
 
 int main(int argc, char** argv) {
     int *a;
+    if (argc<2) {
+	printf("NO ARGUMENT PROVIDED\n");
+	return 1;
+    }
     int length=atoi(argv[1]);
-    scanf("%d",&length);
     a=malloc(sizeof(int) * length);
     printf("[");
     for (int i=0;i<length;i++) {
