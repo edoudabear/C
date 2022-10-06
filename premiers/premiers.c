@@ -201,6 +201,20 @@ void check_primes(void) {
     printf("----------------------------------------------------\n");
 }
 
+void test_basic () {
+    test_if_prime_basic(999789210);
+    // test_if_prime_basic(999999863);
+    // test_if_prime_basic(999999873);
+    // test_if_prime_basic(999999883);
+}
+
+void test_better () {
+    test_if_prime_better(999789210);
+    // test_if_prime_better(999999863);
+    // test_if_prime_better(999999873);
+    // test_if_prime_better(999999883);
+}
+
 // Programme principal --------------------------------------------
 
 int main(int argc, char* argv[]) {
@@ -211,13 +225,18 @@ int main(int argc, char* argv[]) {
     print_decomp(1);
     print_decomp(999789210);
     print_decomp(999999863);
-    print_decomp(999999873);*/
-    //check_primes();
+    print_decomp(999999873);
+    check_primes();
 
     printf("gen_basic = %lf\n",time_it(gen_basic));
     printf("gen_better = %lf\n",time_it(gen_better));
     printf("gen_erathostene = %lf\n",time_it(gen_erathostene));
     printf("gen_erathostene_2 = %lf\n",time_it(gen_erathostene_2));
+    */
+
+    printf("test_if_prime_basic = %lf\n",time_it(test_basic));
+    printf("test_if_prime_better = %lf\n",time_it(test_better));
 
     return 0;
 }
+
