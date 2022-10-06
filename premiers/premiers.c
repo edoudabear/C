@@ -114,7 +114,17 @@ void gen_erathostene(void) {
 }
 
 void gen_erathostene_2(void) {
-    //
+        is_prime[0]=is_prime[1]=false;
+    for (int i=2;i<65535;i++) {
+        is_prime[i]=true;
+    }
+    for (int i=2;i<65535;i++) {
+        if (is_prime[i]) {
+            for (int j=i*i;j<65535;j+=2*i) {
+                is_prime[j]=false;
+            }
+        }
+    }
 }
 
 int pow_mod(int a, int b, int k) {
@@ -190,7 +200,7 @@ int main(int argc, char* argv[]) {
     print_decomp(999999863);
     print_decomp(999999873);*/
     gen_better();
-    gen_erathostene();
+    gen_erathostene_2();
     check_primes();
 
     return 0;
