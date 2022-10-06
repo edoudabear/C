@@ -63,7 +63,12 @@ bool test_if_prime_better(int k) {
 }
 
 void gen_better(void) {
-    //
+    init_primes();
+    for (int i=2;i<65536;i++) {
+        if (test_if_prime_better(i)) {
+            add_prime(i);
+        }
+    }
 }
 
 void print_decomp(int k) {
