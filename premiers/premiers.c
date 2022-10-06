@@ -49,9 +49,7 @@ void gen_basic(void) {
         if (test_if_prime_basic(i)) {
             printf("%d est premier\n",i);
             add_prime(i);
-            is_prime[i]=true;
-        } else {
-            is_prime[i]=false;
+            //is_prime[i]=true;
         }
     }
 }
