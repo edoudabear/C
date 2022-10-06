@@ -148,7 +148,7 @@ void check_primes(void) {
 int main(int argc, char* argv[]) {
     init_primes();
     
-    // A compléter
+    check_primes();
     
     return 0;
 }
