@@ -150,7 +150,7 @@ void check_primes(void) {
 
 int main(int argc, char* argv[]) {
     init_primes();
-    
+    gen_basic();
     check_primes();
     
     return 0;
