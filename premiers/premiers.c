@@ -79,7 +79,7 @@ void print_decomp(int k) {
     int termes[6542];
     termes[0]=1;
     for (int i=0;i<=div;i++) {
-        if (test_if_prime_better(i) && k%i==0) {
+        if (test_if_prime_better(i) && div%i==0) {
             termes[nb_termes]=i;
             div=div/i;
             nb_termes++;
