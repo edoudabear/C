@@ -57,9 +57,8 @@ bool test_if_prime_better(int k) {
         if (k%primes[i]==0) {
             return false;
         }
-        return true;
     }
-    return false;
+    return true;
 }
 
 void gen_better(void) {
