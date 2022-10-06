@@ -118,10 +118,16 @@ void gen_erathostene_2(void) {
     for (int i=2;i<65535;i++) {
         is_prime[i]=true;
     }
-    for (int i=2;i<65535;i++) {
+    for (int i=2;i<=65535/i;i++) {
         if (is_prime[i]) {
             if (i<=INT_MAX/i) {
                 for (int j=i*i;j<65535;j+=2*i) {
+                    is_prime[j]=false;
+                }
+            }
+            else {
+                printf("USING BADLY OPTIMIZED PART\n");
+                for (int j=2*i;j<65535;j+=i) {
                     is_prime[j]=false;
                 }
             }
