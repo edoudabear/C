@@ -48,23 +48,17 @@ void gen_basic(void) {
     for (int i=2;i<65536;i++) {
         if (test_if_prime_basic(i)) {
             add_prime(i);
-            //is_prime[i]=true;
         }
     }
 }
 
-/*
-for (int j=i;j>1;j--) {
-            if (i%j==0) {
-                break;
-            } else if (j==1) {
-                add_prime(i);
-            }
-        }
-*/
-
 bool test_if_prime_better(int k) {
-    //
+    for (int i=0;(primes[i]<k && k<nb_primes)) {
+        if (k%primes[i]==0) {
+            return false;
+        }
+        return true;
+    }
     return false;
 }
 
