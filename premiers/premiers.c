@@ -173,7 +173,7 @@ void check_primes(void) {
 
 int main(int argc, char* argv[]) {
     init_primes();
-    gen_basic();
+    gen_better();
     check_primes();
     print_decomp(37);
     print_decomp(54);
