@@ -53,7 +53,7 @@ void gen_basic(void) {
 }
 
 bool test_if_prime_better(int k) {
-    for (int i=0;(primes[i]<k && k<nb_primes)) {
+    for (int i=0;(primes[i]<k && k<nb_primes);i++) {
         if (k%primes[i]==0) {
             return false;
         }
