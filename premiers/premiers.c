@@ -35,25 +35,31 @@ bool test_if_prime_basic(int n) {
 // Fonctions à compléter ------------------------------------------
 
 void init_primes(void) {
-    for (int i=2;i<65536;i++) {
-        for (int j=i;j>1;j--) {
-            if (i%j==0) {
-                break;
-            } else if (j==1) {
-                primes[nb_primes]=i;
-                nb_primes++;
-            }
-        }
-    }
+    nb_primes=0;
 }
 
 void add_prime(int p) {
-    //
+    primes[nb_primes]=p;
+    nb_primes++;
 }
 
 void gen_basic(void) {
-    //
+    init_primes();
+    for (int i=2;i<65536;i++) {
+        if (test_if_prime_basic(i))
+            add_prime(i);
+    }
 }
+
+/*
+for (int j=i;j>1;j--) {
+            if (i%j==0) {
+                break;
+            } else if (j==1) {
+                add_prime(i);
+            }
+        }
+*/
 
 bool test_if_prime_better(int k) {
     //
