@@ -191,6 +191,7 @@ int main(int argc, char* argv[]) {
     print_decomp(999789210);
     print_decomp(999999863);
     print_decomp(999999873);*/
+    gen_erathostene();
     check_primes();
 
     return 0;
