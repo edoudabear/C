@@ -114,13 +114,13 @@ void gen_erathostene(void) {
 }
 
 void gen_erathostene_2(void) {
-        is_prime[0]=is_prime[1]=false;
+    is_prime[0]=is_prime[1]=false;
     for (int i=2;i<65535;i++) {
         is_prime[i]=true;
     }
     for (int i=2;i<65535;i++) {
         if (is_prime[i]) {
-            for (int j=i;j<65535;j+=i) {
+            for (int j=2*i;j<65535;j+=i) {
                 is_prime[j]=false;
             }
         }
