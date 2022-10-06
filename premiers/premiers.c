@@ -74,6 +74,7 @@ void gen_better(void) {
 void print_decomp(int k) {
     int nb_termes=0,div=k;
     int termes[6542];
+    termes[0]=1;
     for (int i=0;i<=div;i++) {
         if (test_if_prime_better(i)) {
             termes[nb_termes]=i;
@@ -85,7 +86,7 @@ void print_decomp(int k) {
         }
     }
     printf("%d=",k);
-    for (int i=0;i<nb_termes;i++) {
+    for (int i=0;(i<nb_termes || i<1);i++) {
         printf("%d",termes[i]);
         if (i<nb_termes-1) {
             printf("*");
@@ -169,6 +170,12 @@ int main(int argc, char* argv[]) {
     init_primes();
     gen_basic();
     check_primes();
+    print_decomp(37);
+    print_decomp(54);
+    print_decomp(1);
+    print_decomp(999789210);
+    print_decomp(999999863);
+    print_decomp(999999873);
     
     return 0;
 }
