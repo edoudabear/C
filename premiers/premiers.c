@@ -183,7 +183,6 @@ void check_primes(void) {
 
 int main(int argc, char* argv[]) {
     /*init_primes();
-    gen_better();
     check_primes();
     print_decomp(37);
     print_decomp(54);
@@ -191,6 +190,7 @@ int main(int argc, char* argv[]) {
     print_decomp(999789210);
     print_decomp(999999863);
     print_decomp(999999873);*/
+    gen_better();
     gen_erathostene();
     check_primes();
 
