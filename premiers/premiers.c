@@ -141,8 +141,13 @@ void gen_erathostene_2(void) {
 }
 
 int pow_mod(int a, int b, int k) {
-    //
-    return 0;
+    if (b==0) {
+        return 1;
+    } if (b%2==0) {
+        return pow(pow_mod(a,b/2,k),2);
+    } else {
+        return a*pow(pow_mod(a,b/2,k),2);
+    }
 }
 
 bool test_if_prime_fermat(int k, int a) {
