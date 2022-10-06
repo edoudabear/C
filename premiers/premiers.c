@@ -83,7 +83,7 @@ void print_decomp(int k) {
             termes[nb_termes]=i;
             div=div/i;
             nb_termes++;
-            if (i==div) {
+            if (1==div) {
                 break;
             }
             i=1;
