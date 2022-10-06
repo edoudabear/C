@@ -48,6 +48,9 @@ void gen_basic(void) {
     for (int i=2;i<65536;i++) {
         if (test_if_prime_basic(i)) {
             add_prime(i);
+            is_prime=true;
+        } else {
+            is_prime=false;
         }
     }
 }
