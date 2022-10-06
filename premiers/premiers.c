@@ -223,9 +223,6 @@ int main(int argc, char* argv[]) {
     print_decomp(37);
     print_decomp(54);
     print_decomp(1);
-    print_decomp(999789210);
-    print_decomp(999999863);
-    print_decomp(999999873);
     check_primes();
 
     printf("gen_basic = %lf\n",time_it(gen_basic));
@@ -236,7 +233,10 @@ int main(int argc, char* argv[]) {
 
     printf("test_if_prime_basic = %lf\n",time_it(test_basic));
     printf("test_if_prime_better = %lf\n",time_it(test_better));
-
+    print_decomp(999789210);
+    print_decomp(999999863);
+    print_decomp(999999873);
+    print_decomp(999999883);
     return 0;
 }
 
