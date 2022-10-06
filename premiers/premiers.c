@@ -174,12 +174,12 @@ int main(int argc, char* argv[]) {
     init_primes();
     gen_better();
     check_primes();
-    print_decomp(37);
-    print_decomp(54);
-    print_decomp(1);
-    print_decomp(999789210);
-    print_decomp(999999863);
-    print_decomp(999999873);
+    // print_decomp(37);
+    // print_decomp(54);
+    // print_decomp(1);
+    // print_decomp(999789210);
+    // print_decomp(999999863);
+    // print_decomp(999999873);
     
     return 0;
 }
