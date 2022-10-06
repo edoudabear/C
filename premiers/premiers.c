@@ -79,10 +79,11 @@ void print_decomp(int k) {
         if (test_if_prime_better(i) && k%i==0) {
             termes[nb_termes]=i;
             div/=i;
-            i=1;
             nb_termes++;
-        } if (i==div) {
-            break;
+            if (i==div) {
+                break;
+            }
+            i=1;
         }
     }
     printf("%d=",k);
