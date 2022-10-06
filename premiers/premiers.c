@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <limits.h>
-
+#include <math.h>
 #include "time_it.h"
 #include "basic_ppm.h"
 
