@@ -202,15 +202,15 @@ void check_primes(void) {
 }
 
 void test_basic () {
-    test_if_prime_basic(999789210);
-    // test_if_prime_basic(999999863);
+    // test_if_prime_basic(999789210);
+    test_if_prime_basic(999999863);
     // test_if_prime_basic(999999873);
     // test_if_prime_basic(999999883);
 }
 
 void test_better () {
-    test_if_prime_better(999789210);
-    // test_if_prime_better(999999863);
+    // test_if_prime_better(999789210);
+    test_if_prime_better(999999863);
     // test_if_prime_better(999999873);
     // test_if_prime_better(999999883);
 }
@@ -231,8 +231,8 @@ int main(int argc, char* argv[]) {
     printf("gen_erathostene_2 = %lf\n",time_it(gen_erathostene_2));
     */
 
-    printf("test_if_prime_basic 999789210 = %lf\n",time_it(test_basic));
-    printf("test_if_prime_better 999789210 = %lf\n",time_it(test_better));
+    printf("test_if_prime_basic 999999863 = %lf\n",time_it(test_basic));
+    printf("test_if_prime_better 999999863 = %lf\n",time_it(test_better));
     print_decomp(999789210);
     print_decomp(999999863);
     print_decomp(999999873);
