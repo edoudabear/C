@@ -72,7 +72,26 @@ void gen_better(void) {
 }
 
 void print_decomp(int k) {
-    //
+    int nb_termes=0,div=k;
+    int termes[6542];
+    for (int i=0;i<=div;i++) {
+        if (test_if_prime_better(i)) {
+            termes[nb_termes]=i;
+            div/=i;
+            i=1;
+            nb_termes++;
+        } if (i==div) {
+            break;
+        }
+    }
+    printf("%d=",k);
+    for (int i=0;i<nb_termes;i++) {
+        printf("%d",termes[i]);
+        if (i<nb_termes-1) {
+            printf("*");
+        }
+    }
+    printf("\n");
 }
 
 void gen_erathostene(void) {
