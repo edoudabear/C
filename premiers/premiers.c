@@ -212,9 +212,12 @@ int main(int argc, char* argv[]) {
     print_decomp(999789210);
     print_decomp(999999863);
     print_decomp(999999873);*/
-    gen_better();
-    gen_erathostene_2();
-    check_primes();
+    //check_primes();
+
+    printf("gen_basic = %lf\n",time_it(gen_basic));
+    printf("gen_better = %lf\n",time_it(gen_better));
+    printf("gen_erathostene = %lf\n",time_it(gen_erathostene));
+    printf("gen_erathostene_2 = %lf\n",time_it(gen_erathostene_2));
 
     return 0;
 }
