@@ -120,7 +120,7 @@ void gen_erathostene_2(void) {
     }
     for (int i=2;i<65535;i++) {
         if (is_prime[i]) {
-            for (int j=i;j<65535;j+=2*i) {
+            for (int j=i*i;j<65535;j+=2*i) {
                 is_prime[j]=false;
             }
         }
