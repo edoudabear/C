@@ -182,7 +182,7 @@ void check_primes(void) {
 // Programme principal --------------------------------------------
 
 int main(int argc, char* argv[]) {
-    init_primes();
+    /*init_primes();
     gen_better();
     check_primes();
     print_decomp(37);
@@ -190,7 +190,8 @@ int main(int argc, char* argv[]) {
     print_decomp(1);
     print_decomp(999789210);
     print_decomp(999999863);
-    print_decomp(999999873);
-    
+    print_decomp(999999873);*/
+    check_primes();
+
     return 0;
 }
