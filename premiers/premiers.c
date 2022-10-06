@@ -100,7 +100,6 @@ void print_decomp(int k) {
 }
 
 void gen_erathostene(void) {
-    init_primes();
     is_prime[0]=is_prime[1]=false;
     for (int i=2;i<65535;i++) {
         is_prime[i]=true;
