@@ -14,7 +14,7 @@ geometrie: geometrie.o basic_ppm.o
 all: geometrie
 
 run: all
-	./geometrie
+	./geometrie $(question)
 
 clean:
 	rm -f *.o core
