@@ -151,14 +151,27 @@ void load_program_shift_left() { // Incomplet
         set_instruction(i, SPACE, 42, i-1, true); 
     }
     for (int v=0; v<=9; ++v) {
-        set_instruction(20, v, v+1, v, false); // première lettre rencontré
+        set_instruction(20, v, v+1, v, false); // première lettre rencontrée
         set_instruction(21, v, v+1, v, false); // une des lettre qui suit la suivante
         set_instruction(42, v, 21, SPACE, true);
     }
 }
 
 void load_program_concatenate() {
-    // à completer
+    set_instruction(0,SPACE,0,SPACE,true);
+    set_instruction(20, SPACE, 20, SPACE, true); // itération jusqu'au début du mot
+    set_instruction(21,SPACE,20,SPACE,true);
+    set_instruction(21,SPACE,253,SPACE,false); // dernière instruction devant être éxécutée
+    for (int i=1;i<=10;++i) {
+        set_instruction(i, SPACE, 42, i-1, true); 
+    }
+    for (int v=0; v<=9; ++v) {
+        set_instruction(0,v,21,v,true); // 'saut' du premier mot
+        set_instruction(21,v,21,v,true);
+        set_instruction(20, v, v+1, v, false); // première lettre rencontrée
+        set_instruction(21, v, v+1, v, false); // une des lettre qui suit la suivante
+        set_instruction(42, v, 21, SPACE, true);
+    }
 }
 
 void load_program_is_length_even() {
