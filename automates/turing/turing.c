@@ -144,6 +144,7 @@ void load_program_swap() {
 }
 
 void load_program_shift_left() { // Incomplet
+    set_instruction(0,SPACE,20,SPACE,true);
     set_instruction(20, SPACE, 20, SPACE, true); // itération jusqu'au début du mot
     set_instruction(21,SPACE,253,SPACE,false); // dernière instruction devant être éxécutée
     for (int i=1;i<=10;++i) {
