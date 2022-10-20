@@ -210,7 +210,8 @@ int main(int argc, char* argv[]) {
     //load_program_delete();
     //load_program_swap();
     //load_program_is_length_even();
-    load_program_shift_left();
+    //load_program_shift_left();
+    load_program_concatenate();
 
     int data[] = { SPACE, SPACE, 0, 1, 0, 1, 1, SPACE, 2, 3, 1, SPACE };
     init(data, sizeof(data)/sizeof(int));
