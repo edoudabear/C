@@ -144,13 +144,15 @@ void load_program_swap() {
 }
 
 void load_program_shift_left() { // Incomplet
-    set_instruction(20, SPACE, 20, SPACE, true);
-    for (int i=0;i<10;++i) {
-        set_instruction(i, SPACE, 20, i, true);
+    set_instruction(20, SPACE, 20, SPACE, true); // itération jusqu'au début du mot
+    set_instruction(21,SPACE,253,SPAC,false); // dernière instruction devant être éxécutée
+    for (int i=1;i<=10;++i) {
+        set_instruction(i, SPACE, 42, i-1, true); 
     }
     for (int v=0; v<=9; ++v) {
-        set_instruction(20, v, v, v, false);
-        set_instruction(42, v, v, SPACE, true);
+        set_instruction(20, v, v+1, v, false); // première lettre rencontré
+        set_instruction(21, v, v+1, v, false); // une des lettre qui suit la suivante
+        set_instruction(42, v, 21, SPACE, true);
     }
 }
 
