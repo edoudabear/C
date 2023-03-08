@@ -24,7 +24,7 @@ bool ident(int arr1[], int arr2[], int size) {
 
 // Fonctions auxiliaires ajoutées
 
-bool is_finished(int arr[], int size) { // on suppose que les deux pointeurs renvoient vers des segments de mémoire de longueur supérieure ou égale à size
+bool is_finished(int* arr, int size) { // on suppose que les deux pointeurs renvoient vers des segments de mémoire de longueur supérieure ou égale à size
      for (int i=0;i<size;i++) {
 	if (arr[i]!=0)
 	   return false;
