@@ -75,7 +75,7 @@ void find(char* req) {
             return;
         }
     }
-    if (req_size>15) {
+    if (req_size>15 || req_size==0) {
         return;
     }
     char *acc=malloc(16*sizeof(char));
@@ -245,7 +245,7 @@ int main(void) {
     t_init = clock() - t_init;
     double time_taken_init = ((double)t_init)/CLOCKS_PER_SEC; // in seconds
  
-    printf("find took %f seconds to initialize \n", time_taken_init);
+    printf("init took %f seconds\n", time_taken_init);
     //printBool(exists("adjacent"));
     /*clock_t t;
     t = clock();
