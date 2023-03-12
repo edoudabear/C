@@ -81,6 +81,7 @@ void find(char* req) {
     char *acc=malloc(16*sizeof(char));
     acc[0]=0;
     find_aux(req_size,0,-1,acc,occs);
+    free(acc);
 }
 
 // Occs -> tableau contenant le nombre d'occurences d'un caractère (et du joker) dans la requête - ceux contenus dans acc
@@ -89,11 +90,9 @@ void find(char* req) {
 // index -> indice du noeud correspondant au k+1-ième caractère du mot testé
 void find_aux(int nOccs,int k,int index,char* acc, int *occs) {
     if (nOccs==0) { // Si on n'a pas de caractères dans notre tableau d'occurences, on fait ce qui est en dessous
+        acc[k]='\0';
         if (links[linksPtr[2*index]]==-1) {
-            for (int i=0;i<k;++i) {
-                printf("%c",acc[i]);
-            }
-            printf("\n");
+            printf("%s\n",acc);
         } else {
             return;
         }
