@@ -43,14 +43,14 @@ void read_data() {
 }
 
 char *nodes=NULL; // Ne sert que si on veut ne pas imprimer à la volée (dans ce cas, décommenter deux lignes dans la fonction find et penser à décommenter l'affichage "à la volée")
-int *adj=NULL;
+int *linksPtr=NULL;
 int *links=NULL;
 
 /* Simple fonction ayant pour but de tester si la structure est valide (au moins en testant sur certains mots)*/
 bool exists(char* str) {
     int index=str[0]-'a',l=strlen(str);
     for (int i=1;i<l;++i) {
-        int iter=adj[2*index],max=adj[2*index+1];
+        int iter=linksPtr[2*index],max=linksPtr[2*index+1];
         for (;iter<max && nodes[links[iter]]!=str[i];iter++) {
            // printf("%c,%c\n",nodes[links[iter]],str[i]);
         }
@@ -59,7 +59,7 @@ bool exists(char* str) {
         }
         index=links[iter];
     }
-    return links[adj[2*index]]==-1;
+    return links[linksPtr[2*index]]==-1;
 }
 
 void find(char* req) {
@@ -83,9 +83,13 @@ void find(char* req) {
     find_aux(req_size,0,-1,acc,occs);
 }
 
+// Occs -> tableau contenant le nombre d'occurences d'un caractère (et du joker) dans la requête - ceux contenus dans acc
+// nOccs -> nombre de caractères dans la requête n'ayant pas encore été trouvés dans le mot testé
+// acc -> k permiers caractères du mot testé
+// index -> indice du noeud correspondant au k+1-ième caractère du mot testé
 void find_aux(int nOccs,int k,int index,char* acc, int *occs) {
-    if (nOccs==0) { // Suppose que strlen(req)>=i
-        if (links[adj[2*index]]==-1) {
+    if (nOccs==0) { // Si on n'a pas de caractères dans notre tableau d'occurences, on fait ce qui est en dessous
+        if (links[linksPtr[2*index]]==-1) {
             for (int i=0;i<k;++i) {
                 printf("%c",acc[i]);
             }
@@ -119,13 +123,9 @@ void find_aux(int nOccs,int k,int index,char* acc, int *occs) {
             }
         }
     } else {
-        iter=adj[2*index];
-        max=adj[2*index+1]; // iter=min au départ
+        iter=linksPtr[2*index];
+        max=linksPtr[2*index+1]; // iter=min au départ
         for (;iter<max;iter++) {
-            /*for (int i=0;i<k;++i) {
-                printf("%c",acc[i]);
-            }
-            printf(" %c,%d\n",acc[k-1],iter);*/
             if (links[iter]!=-1) {
                 if (occs[nodes[links[iter]]-'a']>0) {
                     occs[nodes[links[iter]]-'a']--;
@@ -147,6 +147,7 @@ void find_aux(int nOccs,int k,int index,char* acc, int *occs) {
     }
 }
 
+// permet de savoir si deux mots str1 et str2 (en les supposant valides) on le même ancêtre à la profondeur j
 bool sameNode(char* str1,char* str2,int j) {
     for (int i=0;i<j;i++) {
         if (str1[i]=='\0' || str2[i]=='\0') { return false; }
@@ -158,9 +159,9 @@ bool sameNode(char* str1,char* str2,int j) {
 void setup_array_2(void) {
     int n=words.n;
     nodes=malloc(n*16*sizeof(char)); // Noeuds de l'arbre (plutôt un graphe d'ailleurs..)
-    adj=malloc(2*n*sizeof(int)*16); // Matrice pointant vers les liens d'un élément nodes[i]. Taille multipliée par deux pour stocker source et dest
+    linksPtr=malloc(2*n*sizeof(int)*16); // Matrice pointant vers les liens d'un élément nodes[i]. Taille multipliée par deux pour stocker source et dest
     links=malloc(n*sizeof(int)*15); // Matrice des liens
-    adj[0]=0;
+    linksPtr[0]=0;
 
     int nodeCounter=0; // Compteur du nombre de noeuds
     int linksPointer=0;
@@ -178,21 +179,21 @@ void setup_array_2(void) {
             }
             */
 
-            // Gestion de la matrice d'adjacence et des noeuds
+            // Gestion de la matrice d'linksPtracence et des noeuds
             if ((arity==0 && sameNode(words.s[i],words.s[i],j+1)) ||
              (i>0 && (sameNode(words.s[i-1],words.s[i],j+1) && !sameNode(words.s[i-1],words.s[i],j+2)))) {
                 arity++; // Si sameNode retourne true, c'est que words.s[i] contient au moins j+1 caractères si il est mis deux fois en argument
                          // sinon, c'est que les deux mots ont le même ancêtre à la profondeur j+2
             } else if (arity>0 && !sameNode(words.s[i-1],words.s[i],j+1)) { // Si deux éléments n'ont pas le même ancêtre à la pronfondeur j
                 nodes[nodeCounter]=words.s[i-1][j]; // On ajoute le caractère précédent à l'arbre-graphe
-                if (nodeCounter>0) { // pour éviter de faire adj[-1]..(adj[0]=0)
-                    adj[2*nodeCounter]=adj[2*nodeCounter-1];
+                if (nodeCounter>0) { // pour éviter de faire linksPtr[-1]..(linksPtr[0]=0)
+                    linksPtr[2*nodeCounter]=linksPtr[2*nodeCounter-1];
                 }
-                adj[2*nodeCounter+1]=adj[2*nodeCounter]+arity;
+                linksPtr[2*nodeCounter+1]=linksPtr[2*nodeCounter]+arity;
                 
                 /* pour du débuggage
                 if (nodeCounter<350) {
-                    printf("[%d] %c | %d (%d) -> %d    |[%d] %d \n",nodeCounter,nodes[nodeCounter],adj[2*nodeCounter],adj[2*nodeCounter]+26,adj[2*nodeCounter+1],nodeCounter,links[nodeCounter]);
+                    printf("[%d] %c | %d (%d) -> %d    |[%d] %d \n",nodeCounter,nodes[nodeCounter],linksPtr[2*nodeCounter],linksPtr[2*nodeCounter]+26,linksPtr[2*nodeCounter+1],nodeCounter,links[nodeCounter]);
                     if (j>0 && currentLetter!=words.s[i][j-1]) {
                         currentLetter=words.s[i][j-1];
                         printf("New letter : %c\n",currentLetter);
@@ -210,9 +211,9 @@ void setup_array_2(void) {
             if (i==n-1 && sameNode(words.s[i],words.s[i],j+1)) { // Cas particulier de i=n-1
                 nodes[nodeCounter]=words.s[i][j];
                 if (nodeCounter>0) {
-                    adj[2*nodeCounter]=adj[2*nodeCounter-1];
+                    linksPtr[2*nodeCounter]=linksPtr[2*nodeCounter-1];
                 }
-                adj[2*nodeCounter+1]=adj[2*nodeCounter]+arity;
+                linksPtr[2*nodeCounter+1]=linksPtr[2*nodeCounter]+arity;
                 nodeCounter++; 
             }
             // Gestion des liens
@@ -229,9 +230,9 @@ void setup_array_2(void) {
             }}}
         }
     }
-    /* ^pour du débuggage
+    /* pour du débuggage : permet de lister les premiers éléments des trois tableaux représentant le graphe
     for (int i=0;i<350;++i) {
-        printf("[%d] %c | %d -> %d    |[%d] %d \n",i,nodes[i],adj[2*i],adj[2*i+1],i,links[i]);
+        printf("[%d] %c | %d -> %d    |[%d] %d \n",i,nodes[i],linksPtr[2*i],linksPtr[2*i+1],i,links[i]);
     }
     */
     return;
@@ -239,34 +240,27 @@ void setup_array_2(void) {
 
 int main(void) {
     read_data();
-    clock_t t_init;
+    clock_t t_init; // variable permettant de mesurer le temps d'initialisation
     t_init = clock();
     setup_array_2();
     t_init = clock() - t_init;
-    double time_taken_init = ((double)t_init)/CLOCKS_PER_SEC; // in seconds
+    double time_taken_init = ((double)t_init)/CLOCKS_PER_SEC;
  
     printf("init took %f seconds\n", time_taken_init);
-    //printBool(exists("adjacent"));
-    /*clock_t t;
-    t = clock();
-    find("x?y?z?");
-    t = clock() - t;
-    double time_taken = ((double)t)/CLOCKS_PER_SEC; // in seconds
- 
-    printf("find took %f seconds to execute \n", time_taken);
-    */
+
+    // boucle principale
     while (true) {
         char req[20];
         printf("Lettres : ");
         scanf("%19s", req);
         if (strcmp(req,"!")==0) { return 0; }
-        clock_t t_query=clock();
+        clock_t t_query=clock(); // Pour déterminer le temps que met une requête à s'éxécuter
         find(req);
         t_query = clock() - t_query;
         double query_time =  ((double)t_query)/CLOCKS_PER_SEC ; // in seconds
         printf("(Query took %f seconds to execute)\n", query_time);
     }
     free(nodes);
-    free(adj);
+    free(linksPtr);
     free(links);
 }
