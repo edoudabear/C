@@ -4,6 +4,8 @@
 #include <stdlib.h>
 #include "basic_ppm.h"
 
+void line(int i1, int j1, int i2, int j2, color c);
+
 // Fonctions de tracé à compléter
 
 void hline(int i, int j1, int j2, color c) {
@@ -106,6 +108,36 @@ void line_case1(int i1, int j1, int i2, int j2, color c) {
     }
 }
 
+void line_case1_t(int i1, int j1, int i2, int j2, int di, int dj, color c) {
+    //printf("CASE 1 : %d %d %d %d\n",i1,j1,i2,j2);
+    if (i1==i2) {
+        hline(i1,j1,j2,c);
+        for (int j=j1;j<=j2;j++) {
+            line(i1,j,di,dj,c);
+        }
+        return;
+    } else if (j1==j2) {
+        vline(i1,i2,j1,c);
+        for (int i=i1;i<=i2;++i) {
+            line(i,j1,di,dj,c);
+        }
+        return;
+    }
+    int reliquat=0.;
+    for (int i=i1; i<=i2;) {
+        for (int j=j1;j<=j2;) {
+            set_pixel_color(i,j,c);
+            line(i,j,di,dj,c);
+            i++;
+            reliquat+=(j2-j1);
+            if (reliquat>(i2-i1)/2) {
+                j++;
+                reliquat-=(i2-i1);
+            }
+        }
+    }
+}
+
 void line_case2(int i1, int j1, int i2, int j2, color c) {
     //printf("CASE 2 : %d %d %d %d\n",i1,j1,i2,j2);
     if (i1==i2) {
@@ -119,6 +151,36 @@ void line_case2(int i1, int j1, int i2, int j2, color c) {
     for (int i=i1; i<=i2;) {
         for (int j=j1;j>=j2;) {
             set_pixel_color(i,j,c);
+            i++;
+            reliquat+=abs(j2-j1);
+            if (reliquat>abs((i2-i1)/2)) {
+                j--;
+                reliquat-=abs(i2-i1);
+            }
+        }
+    }
+}
+
+void line_case2_t(int i1, int j1, int i2, int j2, int di, int dj, color c) {
+    //printf("CASE 2 : %d %d %d %d\n",i1,j1,i2,j2);
+    if (i1==i2) {
+        hline(i1,j1,j2,c);
+        for (int j=j1;j<=j2;j++) {
+            line(i1,j,di,dj,c);
+        }
+        return;
+    } else if (j1==j2) {
+        vline(i1,i2,j1,c);
+        for (int i=i1;i<=i2;++i) {
+            line(i,j1,di,dj,c);
+        }
+        return;
+    }
+    int reliquat=0.;
+    for (int i=i1; i<=i2;) {
+        for (int j=j1;j>=j2;) {
+            set_pixel_color(i,j,c);
+            line(i,j,di,dj,c);
             i++;
             reliquat+=abs(j2-j1);
             if (reliquat>abs((i2-i1)/2)) {
@@ -152,6 +214,35 @@ void line_case3(int i1, int j1, int i2, int j2, color c) {
     }
 }
 
+void line_case3_t(int i1, int j1, int i2, int j2, int di, int dj, color c) {
+    if (i1==i2) {
+        hline(i1,j1,j2,c);
+        for (int j=j1;j<=j2;j++) {
+            line(i1,j,di,dj,c);
+        }
+        return;
+    } else if (j1==j2) {
+        vline(i1,i2,j1,c);
+        for (int i=i1;i<=i2;++i) {
+            line(i,j1,di,dj,c);
+        }
+        return;
+    }
+    int reliquat=0.;
+    for (int j=j1; j<=j2;) {
+        for (int i=i1;i<=i2;) {
+            set_pixel_color(i,j,c);
+            line(i,j,di,dj,c);
+            j++;
+            reliquat+=(i2-i1);
+            if (reliquat>(j2-j1)/2) {
+                i++;
+                reliquat-=(j2-j1);
+            }
+        }
+    }
+}
+
 void line_case4(int i1, int j1, int i2, int j2, color c) {
     //printf("CASE 4 : %d %d %d %d\n",i1,j1,i2,j2);
     if (i1==i2) {
@@ -165,6 +256,35 @@ void line_case4(int i1, int j1, int i2, int j2, color c) {
     for (int j=j1; j>=j2;) {
         for (int i=i1;i<=i2;) {
             set_pixel_color(i,j,c);
+            j--;
+            reliquat+=abs(i2-i1);
+            if (reliquat>abs((j2-j1)/2)) {
+                i++;
+                reliquat-=abs(j2-j1);
+            }
+        }
+    }
+}
+
+void line_case4_t(int i1, int j1, int i2, int j2,int di, int dj, color c) {
+    if (i1==i2) {
+        hline(i1,j1,j2,c);
+        for (int j=j1;j<=j2;j++) {
+            line(i1,j,di,dj,c);
+        }
+        return;
+    } else if (j1==j2) {
+        vline(i1,i2,j1,c);
+        for (int i=i1;i<=i2;++i) {
+            line(i,j1,di,dj,c);
+        }
+        return;
+    }
+    int reliquat=0.;
+    for (int j=j1; j>=j2;) {
+        for (int i=i1;i<=i2;) {
+            set_pixel_color(i,j,c);
+            line(i,j,di,dj,c);
             j--;
             reliquat+=abs(i2-i1);
             if (reliquat>abs((j2-j1)/2)) {
@@ -327,25 +447,24 @@ void circlef(int ic, int jc, int r, color c) { // Inspiré de circle
 }
 
 void trianglef(int i1, int j1, int i2, int j2, int i3, int j3, color c) { // Incomplète
-    if (i3==i2) {
-        if (j2>j3) {
-            int copy=j2;
-            j2=j3;
-            j3=copy;
-        }
-        for (int j=j2;j<j3;j++) {
-            line(i1,j1,i3,j,c);
-        }
+    // Si i2>i1, on inverse les deux valeurs
+    if (i1>i2) {
+        int copy=i2;
+        i2=i1;
+        i1=copy;
+        copy=j2;
+        j2=j1;
+        j1=copy;
     }
-    else if (j2==j3) {
-        if (i2>i3) {
-            int copy=i2;
-            i2=i3;
-            i3=copy;
-        }
-        for (int i=i2;i<i3;i++) {
-            line(i1,j1,i,j3,c);
-        }
+    // Disjonction cas traits :
+    if ((j1<=j2) && (j2<=(j1+(i2-i1)))) {
+        line_case1_t(i1,j1,i2,j2,i3,j3,c);
+    } else if (((j1-(i2-i1))<=j2) && (j2<=j1)) {
+	    line_case2_t(i1,j1,i2,j2,i3,j3,c);
+    } else if (j2 > (j1 + (i2-i1))) {
+	    line_case3_t(i1,j1,i2,j2,i3,j3,c);
+    } else {//(j2 <= (j1-(i2-i1))) {
+	    line_case4_t(i1,j1,i2,j2,i3,j3,c);
     }
 }
 
