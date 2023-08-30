@@ -151,8 +151,7 @@ int pow_mod(int a, int b, int k) {
 }
 
 bool test_if_prime_fermat(int k, int a) {
-    //
-    return false;
+    return pow_mod(a,k-1,k)==1;
 }
 
 // Fonctions de test ----------------------------------------------
